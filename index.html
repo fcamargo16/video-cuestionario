@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Video con cuestionario</title>
+  <style>
+    #quiz {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    .question h4 {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Capacitación en Control de Acceso</h2>
+
+  <!-- Contenedor del video -->
+  <div id="player"></div>
+
+  <!-- Cuestionario -->
+  <div id="quiz">
+    <h3>Responde las siguientes preguntas:</h3>
+    <form>
+      <!-- Pregunta 1 -->
+      <div class="question">
+        <h4>1) ¿Qué es un control de acceso?</h4>
+        <label><input type="radio" name="q1" value="A"> A) Son consignas de puesto</label><br>
+        <label><input type="radio" name="q1" value="B"> B) Es un sistema de seguridad que determina cuándo y quién puede ingresar a un área determinada.</label><br>
+        <label><input type="radio" name="q1" value="C"> C) El control de acceso no tiene relación con la seguridad, solo se utiliza para decorar entradas.</label>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="question">
+        <h4>2) ¿Qué elementos componen un control de acceso?</h4>
+        <label><input type="radio" name="q2" value="A"> A) Un control de acceso solo funciona con cámaras de seguridad, no necesita otros dispositivos.</label><br>
+        <label><input type="radio" name="q2" value="B"> B) Los elementos principales de un control de acceso incluyen credenciales, lectores, cerraduras y software de gestión.</label><br>
+        <label><input type="radio" name="q2" value="C"> C) Un control de acceso se compone únicamente de decoración en la entrada para dar apariencia de seguridad.</label>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="question">
+        <h4>3) ¿Cuál de los siguientes puntos cubre un sistema de control de acceso?</h4>
+        <label><input type="radio" name="q3" value="A"> A) Permitir únicamente el ingreso de personal autorizado y registrar accesos.</label><br>
+        <label><input type="radio" name="q3" value="B"> B) Regular la música ambiental en las instalaciones.</label><br>
+        <label><input type="radio" name="q3" value="C"> C) Administrar el servicio de cafetería de los empleados.</label>
+      </div>
+
+      <button type="submit">Enviar respuestas</button>
+    </form>
+  </div>
+
+  <!-- Script de la API de YouTube -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '390',
+        width: '640',
+        videoId: 't_YMym34p3w', // 👈 tu ID de video correcto
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        document.getElementById('quiz').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
