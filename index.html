@@ -2,39 +2,102 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Video con evaluación</title>
+  <title>Capacitación en Control de Acceso</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, rgba(18,30,75,0.1), rgba(255,0,0,0.1), rgba(186,188,190,0.1)), #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      width: 100%;
+      border-bottom: 3px solid #121e4b;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    header img {
+      max-height: 80px; /* Ajusta tamaño del logo */
+    }
+
+    h2 {
+      color: #000000;
+      text-shadow: 2px 2px 5px rgba(204, 193, 193, 0.6);
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    h2 {
+      margin-top: 20px;
+      color: rgb(0, 0, 0); /* Contraste sobre el fondo */
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px auto;
+    }
+
+    #player {
+      border: 6px solid white; /* Marco blanco para resaltar sobre el fondo */
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    }
+
     #evalBtn {
       display: none;
       margin-top: 20px;
-      padding: 12px 20px;
-      background-color: #121e4b; /* Azul corporativo */
-      color: white;
+      padding: 12px 25px;
+      background-color: white;
+      color: #121e4b;
+      font-weight: bold;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-size: 16px;
-      opacity: 0;               /* Inicialmente transparente */
-      transition: opacity 1.5s; /* Animación suave */
+      opacity: 0;
+      transition: opacity 1.5s, transform 0.3s;
     }
     #evalBtn.show {
       display: inline-block;
-      opacity: 1; /* Cuando se active la clase, se hace visible */
+      opacity: 1;
     }
     #evalBtn:hover {
-      background-color: #ff0000; /* Rojo corporativo al pasar el mouse */
+      background-color: #ff0000;
+      color: white;
+      transform: scale(1.05); /* Pequeño zoom al pasar el mouse */
+    }
+
+    #evalBtn span {
+      margin-right: 8px; /* Espacio entre el icono y el texto */
     }
   </style>
 </head>
 <body>
+  <!-- Logo empresa -->
+  <header>
+    <img src="logo.png" alt="Logo de la empresa"> <!-- 👉 tu logo en la carpeta /img -->
+  </header>
+
   <h2>Capacitación en Control de Acceso</h2>
 
-  <!-- Contenedor del video -->
-  <div id="player"></div>
+  <!-- Contenedor centrado del video -->
+  <div class="video-container">
+    <div id="player"></div>
+  </div>
 
-  <!-- Botón de evaluación -->
+  <!-- Botón de evaluación con icono -->
   <button id="evalBtn" onclick="window.location.href='https://forms.office.com/Pages/ResponsePage.aspx?id=0vZmnPzTYUWq6ogrOsha7kIVjqPpKBlChG95k8gEhWBUQkwyUlc2VlFIV0ExRjlIWlFIVVlYNVZRRS4u'">
-    Realizar evaluación
+    <span>📝</span> Realizar evaluación
   </button>
 
   <!-- Script de la API de YouTube -->
@@ -55,10 +118,9 @@
 
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.ENDED) {
-        // Mostrar el botón con animación fade in
         const btn = document.getElementById('evalBtn');
         btn.style.display = 'inline-block';
-        setTimeout(() => btn.classList.add('show'), 50); 
+        setTimeout(() => btn.classList.add('show'), 50);
       }
     }
   </script>
